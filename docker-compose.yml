@@ -1,0 +1,33 @@
+version: '2'
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    volumes:
+    - .:/app
+    ports:
+    - "80:80"
+    - "443:443"
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: docker/php/Dockerfile
+    volumes:
+    - ./app:/app
+    stdin_open: true
+    tty: true
+  database:
+    container_name: database
+    build:
+      context: .
+      dockerfile: docker/database/Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: customer_assistances
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    stdin_open: true
+    tty: true
