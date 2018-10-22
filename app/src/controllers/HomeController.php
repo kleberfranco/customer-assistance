@@ -1,7 +1,6 @@
 <?php
 
-namespace src\HomeController;
-
+namespace src\Controller\HomeController;
 
 class HomeController
 {
